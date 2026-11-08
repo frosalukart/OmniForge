@@ -1,60 +1,44 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>id.omniforge</groupId>
-    <artifactId>OmniForge</artifactId>
-    <version>1.0.0</version>
-    <packaging>jar</packaging>
+    <groupId>com.namaanda</groupId>
+    <artifactId>RaceCore</artifactId>
+    <version>1.0-SNAPSHOT</version>
 
     <properties>
-        <maven.compiler.release>25</maven.compiler.release>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
     </properties>
 
     <repositories>
+        <!-- Spigot Repo -->
         <repository>
-            <id>papermc</id>
-            <url>https://repo.papermc.io/repository/maven-public/</url>
+            <id>spigot-repo</id>
+            <url>https://hub.spigotmc.org/nexus/content/repositories/snapshots/</url>
+        </repository>
+        <!-- Repo untuk AuraSkills (Aurelium) -->
+        <repository>
+            <id>aurelium-repo</id>
+            <url>https://repo.aurelium.dev/repository/public/</url>
         </repository>
     </repositories>
 
     <dependencies>
-        <!-- Satu-satunya dependency. MMOItems/EI/AE/AuraSkills/RaceCore/ModelEngine dipanggil via reflection. -->
+        <!-- Spigot API -->
         <dependency>
-            <groupId>io.papermc.paper</groupId>
-            <artifactId>paper-api</artifactId>
-            <version>[26.2.build,)</version>
+            <groupId>org.spigotmc</groupId>
+            <artifactId>spigot-api</artifactId>
+            <version>1.20.4-R0.1-SNAPSHOT</version> <!-- Sesuaikan versi server Anda -->
+            <scope>provided</scope>
+        </dependency>
+        <!-- AuraSkills API -->
+        <dependency>
+            <groupId>dev.aurelium</groupId>
+            <artifactId>auraskills-api</artifactId>
+            <version>2.0.4</version> <!-- Sesuaikan dengan versi AuraSkills terbaru -->
             <scope>provided</scope>
         </dependency>
     </dependencies>
-
-    <build>
-        <finalName>OmniForge-${project.version}</finalName>
-        <resources>
-            <resource>
-                <directory>src/main/resources</directory>
-                <filtering>true</filtering>
-                <includes>
-                    <include>plugin.yml</include>
-                </includes>
-            </resource>
-            <resource>
-                <directory>src/main/resources</directory>
-                <filtering>false</filtering>
-                <excludes>
-                    <exclude>plugin.yml</exclude>
-                </excludes>
-            </resource>
-        </resources>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.13.0</version>
-            </plugin>
-        </plugins>
-    </build>
 </project>
