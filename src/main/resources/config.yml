@@ -1,0 +1,36 @@
+# ============================ OmniForge config ============================
+messages:
+  prefix: "&8[&6OmniForge&8] &r"
+  cooldown: "&cMasih cooldown &e{time}s"
+  no-permission: "&cKamu tidak punya izin memakai skill ini."
+  no-mana: "&cMana tidak cukup! &7(butuh &b{cost}&7)"
+  race-denied: "&cRace kamu (&f{race}&c) tidak bisa memakai item ini. &7Butuh: &e{allowed}"
+  level-denied: "&cButuh AuraSkills &e{skill} &clevel &e{level}&c."
+  given: "&aMemberikan &f{item} &ax{amount} &akepada &e{player}"
+  reloaded: "&aConfig & item direload (&e{count}&a item)."
+
+# Tampilkan status cooldown di actionbar saat memegang item yang punya ability
+display:
+  actionbar: true
+
+# Race 'human' di RaceCore boleh memakai item ber-syarat race (sesuai races/default.yml)
+racecore:
+  human-bypass: true
+
+# Boleh melukai pemain lain lewat DAMAGE_NEARBY / efek area?
+pvp: false
+
+# Stat custom (non-vanilla): crit-chance (%), crit-damage (% bonus), lifesteal (%)
+show-stats-in-lore: true
+stat-format: "&7{name}: &a+{value}"
+stat-names:
+  damage: "Damage"
+  attack-speed: "Attack Speed"
+  armor: "Armor"
+  toughness: "Armor Toughness"
+  health: "Health"
+  speed: "Speed"
+  knockback-resist: "Knockback Resist"
+  crit-chance: "Crit Chance %"
+  crit-damage: "Crit Damage %"
+  lifesteal: "Lifesteal %"

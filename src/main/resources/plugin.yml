@@ -1,0 +1,16 @@
+name: OmniForge
+version: '${project.version}'
+main: id.omniforge.OmniForge
+api-version: '26.2'
+description: Satu plugin untuk menggabungkan ItemForge, LegendaryForge, MMOItems, ExecutableItems, AdvancedEnchantments, AuraSkills, RaceCore & ModelEngine.
+authors: [OmniForge]
+softdepend: [MMOItems, MythicLib, ExecutableItems, SCore, AdvancedEnchantments, AuraSkills, RaceCore, ModelEngine, PlaceholderAPI, floodgate, Geyser-Spigot]
+commands:
+  omniforge:
+    description: Perintah utama OmniForge
+    usage: /omniforge <gui|give|list|info|link|reload>
+    aliases: [of, oforge]
+    permission: omniforge.admin
+permissions:
+  omniforge.admin: {default: op}
+  omniforge.bypass: {default: op, description: Abaikan syarat race & level skill}

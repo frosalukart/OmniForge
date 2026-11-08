@@ -1,0 +1,94 @@
+# =====================================================================
+#  items/*.yml  — SATU SECTION = SATU ITEM.  (bisa juga dibuat lewat GUI: /of)
+#  Format ini SUPERSET dari ItemForge: item ItemForge lama bisa langsung di-copy ke sini.
+#
+#  ---- Dasar ----
+#   material            material vanilla
+#   base                (opsional) bikin item dari plugin lain:  mmoitems:SWORD.KATANA  /  ei:nama_item
+#   bind                (opsional) item MMOItems/EI yang SUDAH ada otomatis dapat ability profil ini
+#   name, lore          teks (&-warna, &#RRGGBB)
+#  ---- Texture / Resource pack ----
+#   item-model          1.21.2+  -> assets/<ns>/items/<nama>.json     (contoh: "rpg:fire_sword")
+#   custom-model-data   angka CMD (range_dispatch / legacy)
+#  ---- Efek ----
+#   unbreakable, glow, enchants {sharpness: 3}, slot (mainhand/offhand/head/chest/legs/feet/armor/any)
+#   stats               damage attack-speed armor toughness health speed knockback-resist crit-chance crit-damage lifesteal
+#   ae-enchants         {nama_enchant_AE: level}      -> AdvancedEnchantments
+#   passive-effects     {speed: 1}                    -> efek konstan saat dipakai (0 = level I)
+#  ---- Integrasi RPG ----
+#   requirements.races      [angel, elf]              -> RaceCore (kosong = semua)
+#   requirements.auraskills {fighting: 40}            -> level skill AuraSkills
+#   stat-bonus              {strength: 10}            -> AuraSkills stat saat dipakai
+#   xp-boost                {fighting: 15}            -> % bonus XP AuraSkills saat dipakai
+#   race-bonus              {angel: {damage-multiplier: 1.3, cooldown-multiplier: 0.75}}
+#  ---- Ability ----
+#   trigger: RIGHT_CLICK SHIFT_RIGHT_CLICK LEFT_CLICK SHIFT_LEFT_CLICK HIT_ENTITY KILL_ENTITY WHEN_HIT CONSUME
+#   actions: lihat daftar di README / tombol Action di GUI
+# =====================================================================
+
+fire_sword:
+  material: DIAMOND_SWORD
+  name: "&c&lPedang Api"
+  lore:
+    - ""
+    - "&7Klik kanan: &6Ledakan Api"
+  item-model: "rpg:fire_sword"
+  custom-model-data: 1001
+  unbreakable: true
+  glow: true
+  enchants:
+    sharpness: 3
+  slot: mainhand
+  stats:
+    damage: 6
+    attack-speed: -2.4
+    crit-chance: 15
+    crit-damage: 50
+    lifesteal: 5
+  requirements:
+    races: []
+    auraskills: {fighting: 5}
+  stat-bonus: {strength: 5}
+  xp-boost: {fighting: 10}
+  abilities:
+    flame_burst:
+      trigger: RIGHT_CLICK
+      cooldown: 8
+      mana-cost: 20
+      actions:
+        - "SOUND:entity.blaze.shoot:1:1"
+        - "PARTICLE:flame:40:0.6"
+        - "DAMAGE_NEARBY:5:6"
+        - "IGNITE_NEARBY:5:80"
+        - "MESSAGE:&6Api meledak!"
+    vampire_hit:
+      trigger: HIT_ENTITY
+      cooldown: 3
+      actions:
+        - "POTION:regeneration:3:1"
+
+healing_apple:
+  material: GOLDEN_APPLE
+  name: "&a&lApel Penyembuh"
+  item-model: "rpg:healing_apple"
+  abilities:
+    eat:
+      trigger: CONSUME
+      actions:
+        - "HEAL:10"
+        - "POTION:speed:10:1"
+        - "AURA_XP:healing:25"
+
+# ---- CONTOH GABUNGAN (hapus tanda # untuk dipakai) ----
+# katana_plus:                      # MMOItems + ability + enchant AE + model texture
+#   base: "mmoitems:SWORD.KATANA"
+#   item-model: "rpg:katana"
+#   ae-enchants: {lifesteal: 2}
+#   requirements: {races: [elf, dark_elf]}
+#   abilities:
+#     slash: {trigger: RIGHT_CLICK, cooldown: 5, actions: ["DASH:1.2", "DAMAGE_NEARBY:3:8", "MODEL:slash_fx:20"]}
+#
+# ei_buff:                          # item ExecutableItems yang sudah ada diberi ability tambahan
+#   bind: "ei:nama_item_ei"
+#   abilities:
+#     buff: {trigger: SHIFT_RIGHT_CLICK, cooldown: 30, actions: ["POTION:strength:10:1"]}
